@@ -1,8 +1,15 @@
 #include "Lista.hh"
+#include <iostream>
+
 
 Lista::Lista(int valor, Lista* resto) : _valor(valor), _resto(resto) {}
 
 Lista::Lista(int valor) : _valor(valor), _resto(nullptr) {}
+
+Lista::~Lista() {
+    
+    delete _resto;
+}
 
 int Lista::get_valor() {
 
@@ -43,3 +50,31 @@ int Lista::sumatoria() {
     return res;
 
 }
+
+int Lista::largo() {
+    int resultado = 0; 
+
+    for(Lista* i = this; i != nullptr; i= i->_resto) { //empieza desde primervalor y va aumentando
+        resultado++;
+    }
+
+    return resultado; 
+}
+
+
+int Lista::operator[](std::size_t ix) {
+
+    Lista* valor = this;
+
+    for(std::size_t i = ix; i>0; i--) { //>0 porque empieza en 0
+        
+        if(valor==nullptr) {
+            std::cout << "A punto de tronar \n";
+        }
+        
+        valor = valor->_resto; 
+    }
+
+    return valor->_valor;
+
+} 
