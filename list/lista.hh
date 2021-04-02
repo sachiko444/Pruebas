@@ -7,6 +7,8 @@ class Lista {
     public:
     Lista(int valor, Lista* resto);
     Lista(int valor);
+    Lista(const Lista& otra);
+
 
     ~Lista();
 
@@ -31,6 +33,11 @@ class Lista {
     void byValue(int valor, std::string st);
 
     void byReference(int& valor, std::string& st);
+
+    bool operator==(const Lista& otra);
+
+    bool operator>(const Lista& otra);
+
 
     private:
     int _valor;

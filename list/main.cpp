@@ -41,4 +41,30 @@ int main(int argc, char** argv) {
         std::cout << "El indice no existe \n";
     }
 
+ 
+
+    Lista l2 = l;
+    int ix = 1;
+
+    //l[ix] = 3;
+
+    std::cout << "Lista 1: " << l[ix] << "\n";
+    std::cout << "Lista 2: " << l2[ix] << "\n";
+
+
+    if(l == l2) {
+        std::cout << "son iguales \n";
+    }
+    else {
+        std::cout << "no son iguales \n";
+    }
+
+Lista l3(1, new Lista(2));
+    if(l > l3) {
+        std::cout << "si es mayor \n";
+    }
+    else {
+        std::cout << "no es mayor \n";
+    }
+
 }

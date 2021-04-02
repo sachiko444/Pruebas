@@ -1,14 +1,32 @@
 #include "Lista.hh"
-#include <iostream>
 
+#include <iostream>
 
 Lista::Lista(int valor, Lista* resto) : _valor(valor), _resto(resto) {}
 
 Lista::Lista(int valor) : _valor(valor), _resto(nullptr) {}
 
+Lista::Lista(const Lista& otra) : _valor(otra._valor) {
+
+    Lista* restoPtr = otra._resto;
+
+    if(restoPtr != nullptr) {
+        _resto = new Lista(*restoPtr);
+    }
+    else {
+        _resto = nullptr;
+    }
+
+    std::cout << "Se esta copiando\n";
+
+}
+
+
 Lista::~Lista() {
-    
+
     delete _resto;
+
+    std::cout << "adios \n";
 }
 
 int Lista::get_valor() {
@@ -108,4 +126,38 @@ void Lista::byReference(int& valor, std::string& st) {
 
     valor = 42;
     st[0] = 'A';
+}
+
+//== SI TAMANIO LISTA ES MISMA LONGITUD
+bool Lista::operator==(const Lista& otra) {
+
+    if(_valor != otra._valor) { //primer numero de lista
+        return false;
+    }
+
+    if(_resto == nullptr && otra._resto == nullptr) { //ya cuando llega a final de lista 
+        return true;
+    }
+
+    if(_resto == nullptr || otra._resto == nullptr) { //si no terminan al mismo tiempo
+        return false;
+    }
+
+    Lista& l1 = *_resto;
+    Lista& l2 = *otra._resto;
+
+    return l1 == l2;
+
+}
+
+//> SI TAMANIO LISTA ES MAYOR LONGITUD
+bool Lista::operator>(const Lista& otra) {
+    
+    if(_resto != nullptr && otra._resto == nullptr) { 
+        return true;
+    }
+
+    if(_resto == nullptr && otra._resto != nullptr) { //ya cuando llega a final de lista 
+        return false;
+    }
 }
