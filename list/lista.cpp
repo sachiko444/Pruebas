@@ -153,11 +153,14 @@ bool Lista::operator==(const Lista& otra) {
 //> SI TAMANIO LISTA ES MAYOR LONGITUD
 bool Lista::operator>(const Lista& otra) {
     
-    if(_resto != nullptr && otra._resto == nullptr) { 
+    if(_resto == nullptr && otra._resto == nullptr) { //equal
+        return false;
+
+    if(_resto != nullptr && otra._resto == nullptr) { //greater
         return true;
     }
 
-    if(_resto == nullptr && otra._resto != nullptr) { //ya cuando llega a final de lista 
+    if(_resto == nullptr && otra._resto != nullptr) { //less
         return false;
     }
 }
