@@ -78,3 +78,34 @@ int Lista::operator[](std::size_t ix) {
     return valor->_valor;
 
 } 
+
+
+//ANOTHER WAY DE OPERADOR PERO SIN SEGMENTATION FAULT, SINO CON TEXTO EN RETURN
+bool Lista::tryGet(std::size_t ix, int& respuesta) {
+
+    Lista* valor = this;
+
+    for(std::size_t i = ix; i > 0; i--) {
+        if(valor == nullptr) {
+            return false; 
+        }
+
+        valor = valor-> _resto;
+
+    }
+
+    respuesta = valor -> _valor;
+    return true; 
+}
+
+void Lista::byValue(int valor, std::string st) {
+
+    valor = 42;
+    st[0] = 'A';
+}
+
+void Lista::byReference(int& valor, std::string& st) {
+
+    valor = 42;
+    st[0] = 'A';
+}

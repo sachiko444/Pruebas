@@ -26,6 +26,12 @@ class Lista {
 
     int operator[](std::size_t ix);
 
+    bool tryGet(std::size_t ix, int& resultado);
+
+    void byValue(int valor, std::string st);
+
+    void byReference(int& valor, std::string& st);
+
     private:
     int _valor;
 
