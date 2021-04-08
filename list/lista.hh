@@ -38,9 +38,15 @@ class Lista {
 
     bool operator>(const Lista& otra);
 
+    void terminar();
 
-    private:
+    void eliminar(int i);
+
+
+
+    protected:
     int _valor;
 
     Lista* _resto;
+
 };

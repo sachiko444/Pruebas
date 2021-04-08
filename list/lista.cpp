@@ -21,6 +21,11 @@ Lista::Lista(const Lista& otra) : _valor(otra._valor) {
 
 }
 
+void Lista::terminar() {
+
+    _resto = nullptr;
+}
+
 
 Lista::~Lista() {
 
@@ -78,6 +83,43 @@ int Lista::largo() {
 
     return resultado; 
 }
+
+
+//ELIMINAR UNN ELEMENTO DE LA LISTA
+
+void Lista::eliminar(int i) {
+
+    Lista* actual = this;
+    Lista* previo = nullptr;
+
+    for(int j = 0; j < i; j++) {  //avanzar hasta q actual sea el que quiero eliminar
+        previo = actual; //previo es uno antes del que quiero eliminar
+        actual = actual->_resto;
+    }
+
+    if(previo == nullptr) {  //si quiero eliminar el primer elemento
+        Lista* tmp = _resto; //para no tener fugas de memoria
+
+        _valor = _resto->_valor; //en lugar de eliminar el primero, solo se traspasa de lugar como pop
+        _resto = _resto->_resto;
+
+        tmp->terminar(); //asignar nullptr a _resto
+        delete tmp; //elimina ultimo valor
+        return;
+    }
+
+    //si el que trato de eliminar no es el primer elemento de lista
+    previo->_resto = actual->_resto; //actual=el que va despues de actual
+    actual->terminar(); //asignar nullptr a actual
+    delete actual; //eliminar actual
+
+}
+
+
+
+
+
+
 
 
 int Lista::operator[](std::size_t ix) {
@@ -155,6 +197,7 @@ bool Lista::operator>(const Lista& otra) {
     
     if(_resto == nullptr && otra._resto == nullptr) { //equal
         return false;
+    }
 
     if(_resto != nullptr && otra._resto == nullptr) { //greater
         return true;

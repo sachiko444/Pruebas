@@ -2,10 +2,14 @@
 
 #include "Lista.hh"
 
+#include "Pila.hh"
+
+#include "Cola.hh"
+
 int main(int argc, char** argv) {
 
-    Lista l(1, new Lista(2, new Lista(3)));
     
+    /*
     std::cout << "la lista es: " <<l.to_string() << "\n";
     std::cout << "suma de lista: " << l.sumatoria() << "\n";
     std::cout << "longitud de lista: " << l.largo() << "\n";
@@ -67,4 +71,40 @@ Lista l3(1, new Lista(2));
         std::cout << "no es mayor \n";
     }
 
+*/
+
+//CON PILA
+
+Lista l(1, new Lista(2, new Lista(3)));
+
+Pila p(42);
+
+
+int resultado;
+bool existe = p.tryGet(0, resultado);
+
+std::cout << "El numero pila es: " << resultado << "\n";
+std::cout << "El numero existe: " <<existe << "\n"; 
+
+p.push(4);
+p.push(7);
+
+std::cout << "Pop!" << p.pop() << "\n";
+std::cout << "Pop!" << p.pop() << "\n";
+
+//CON COLA
+
+Cola c(43);
+
+c.queue(5);
+c.queue(7);
+
+std::cout << "dqueue: " << c.dequeue() << "\n";
+std::cout << "dqueue: " << c.dequeue() << "\n";
+
+
+
 }
+
+
+
