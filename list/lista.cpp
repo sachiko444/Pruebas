@@ -122,7 +122,7 @@ void Lista::eliminar(int i) {
 
 
 
-int Lista::operator[](std::size_t ix) {
+int& Lista::operator[](std::size_t ix) {
 
     Lista* valor = this;
 

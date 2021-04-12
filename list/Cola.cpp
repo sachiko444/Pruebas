@@ -13,19 +13,12 @@ void Cola::queue(int i) { //agrega nuevo valor al inicio
 }
 
 int Cola::dequeue() { //Retorna y quita el ultimo valor de lista 
-
-    Lista* nueva = new Lista(_valor, _resto);
-    int size = (nueva->largo())-1;
-    int respuesta = nueva[size]; 
-
-
-    /*while(_resto != nullptr) {
-        _valor = _resto->get_valor();
-        _resto = _resto->get_resto();
-    }
-    int respuesta = _valor;*/
     
+    int respuesta = (*this)[this->largo()-1]; 
+
+    this->eliminar(this->largo() - 1);
+
     return respuesta;
 
-    nueva->eliminar(nueva->largo() - 1);
+    
 }
