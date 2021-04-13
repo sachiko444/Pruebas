@@ -13,10 +13,10 @@ bool Vehiculo::mover(const Direccion direccion) {
     switch(direccion) {
 
         case Arriba:
-            nuevoY += 1;
+            nuevoY -= 1;
             break;
         case Abajo:
-            nuevoY -= 1;
+            nuevoY += 1;
             break;
         case Derecha:
             nuevoX += 1;
@@ -47,4 +47,28 @@ bool Vehiculo::puedeNavegarHacia(const int x, const int y) {
     && y >=0 
     && _mapa.largo() > x 
     && _mapa.alto() > y;
+}
+
+
+void Vehiculo::imprimir()  {
+
+    for(int j = 0; j < _mapa.alto(); j++) {
+        for(int i = 0; i < _mapa.largo(); i++) {
+
+            if(i == _posX && j == _posY) {
+                std::cout << "X";
+            }
+            else if(_mapa[i][j] == Terreno::Agua) {
+                std::cout << "~"; 
+            }
+            else if(_mapa[i][j] == Terreno::Calle) {
+                std::cout << "="; 
+            }
+            else {
+                std::cout << "#";
+            }
+        }
+
+        std::cout << "\n";
+    }
 }

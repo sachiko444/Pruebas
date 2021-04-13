@@ -1,4 +1,5 @@
 #pragma once
+#include <string>
 
 enum Terreno {
     Tierra,
@@ -13,6 +14,7 @@ class Mapa {
 
     int largo() const;            //const derecha ya que mapa se declaro como const en vehiculo.hh
     int alto() const;
+    Terreno* operator[](std::size_t i);
 
     private:
     Terreno** _terreno;
