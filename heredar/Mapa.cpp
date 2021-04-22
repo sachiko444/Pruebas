@@ -1,15 +1,13 @@
 #include "Mapa.hh"
-#include <string>
 
+Mapa::Mapa(Terreno** terreno, const int largo, const int alto) : _largo(largo), _alto(alto), _terreno(terreno) {}
 
-Mapa::Mapa(Terreno** terreno, const int largo, const int alto): _largo(largo), _alto(alto), _terreno(terreno) {}
-
-int Mapa::largo() const{
+int Mapa::largo() const {
 
     return _largo;
 }
 
-int Mapa::alto() const{
+int Mapa::alto() const {
 
     return _alto;
 }

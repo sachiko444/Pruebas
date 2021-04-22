@@ -1,4 +1,5 @@
 #pragma once
+
 #include <string>
 
 enum Terreno {
@@ -12,7 +13,7 @@ class Mapa {
     public:
     Mapa(Terreno** terreno, const int largo, const int alto);
 
-    int largo() const;            //const derecha ya que mapa se declaro como const en vehiculo.hh
+    int largo() const;
     int alto() const;
     Terreno* operator[](std::size_t i);
 

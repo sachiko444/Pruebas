@@ -14,8 +14,8 @@ int main() {
         std::cout << "CASILLA: ";
         std::cin >> casilla;
 
-        while(!juegomegaepicoXD.ponerPieza(casilla)) {
-            std::cout << "wtffff traicion\n";
+        while(!juegomegaepicoXD.ponerPieza(casilla)) { //cuando sea false
+            std::cout << "bruh\n";
             std::cout << "CASILLA: ";
             std::cin >> casilla;
         }
@@ -27,6 +27,6 @@ int main() {
     if (ganador == 3) {
         std::cout << "wowwwwwwwwww, yall guys suck\n";
     } else {
-        std::cout << "damn el jugador " << ganador << " te piso lmao\n";
+        std::cout << "damn el jugador " << ganador << " won:)) gg ezzzzz \n";
     }
 }

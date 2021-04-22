@@ -1,31 +1,30 @@
 #pragma once
 
+#include "IVehiculo.hh"
 #include "Mapa.hh"
 
-enum Direccion {
-    Arriba,
-    Abajo,
-    Derecha,
-    Izquierda
-};
-
-
-class Vehiculo {
+class Vehiculo : public IVehiculo {
 
     public:
-    Vehiculo(const Mapa& mapa, const int posX, const int posY); //const & para no crear copia del map
-    bool mover(const Direccion direccion); //es bool ya q no todos los movimientos van a ser validos
-    void imprimir();
+    Vehiculo(const Mapa& mapa); //const & para no crear copia del map
 
+    bool mover(const Direccion direccion) override;
+    void imprimir() override;
+    bool colocarVehiculo() override;
 
     protected:
-    Mapa _mapa; //no va a cambiar [const]
-    virtual bool puedeNavegarHacia(const int i, const int j); //si vehiculo puede navegar (coordenadas)
-
-
+    Mapa _mapa;
+    virtual bool puedeNavegarHacia(const int i, const int j);
+    virtual bool posicionInicial(int& posX, int& posY) = 0;
 
     private:
-    int _posX; //posicion actual de vehiculo
-    int _posY;
 
+    int _posX;
+    int _posY;
 };
+
+
+//const & para no crear copia del map
+//es bool ya q no todos los movimientos van a ser validos
+//si vehiculo puede navegar (coordenadas)
+//posicion actual de vehiculo
