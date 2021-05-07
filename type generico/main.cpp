@@ -1,9 +1,32 @@
-#include "Array.hh"
-#include "Dictionary.hh"
 #include <iostream>
+#include <map>
+#include <memory>
 #include <string>
+#include <vector>
+
+#include "Vector.hh"
+
+//SMART POINTERS
+void transfer(std::shared_ptr<Vector> elShared) {
+
+    std::cout << "el shared es: " << elShared->to_string() << "\n";
+}
+
+class Dummy {
+
+    public:
+    std::shared_ptr<Vector> sVec;
+};
+
+
+
+
+
+
+
 
 int main(int argc, char** argv) {
+
 
 //array variable INT
     Array<int> array(5); //hay q especificar que tipo sera el array
@@ -11,7 +34,10 @@ int main(int argc, char** argv) {
     Array<std::string> strArray(3);
 //variable VECTOR
     Array<Vector> vecs(3);
-
+//variable VECTOR LIBRERIA
+     std::vector<Vector> vecz(3);
+//variable MAP
+    std::map<std::string, Vector> mVecs;
 
 
 
@@ -51,13 +77,77 @@ int main(int argc, char** argv) {
 
 
 //VECTOR
-    vecs[0] = Vector(1,4);
-    Vector v2(1,1);
+    vecs[0] = Vector(1,1);
+    Vector v2(1,2);
 
 
     if(!vecs.existe(v2)) {
         std::cout << "no existe (1,1) \n";
     }
+
+
+//VECTOR LIBRERIA
+
+    //vecz.reserve(3);
+
+    vecz.push_back(Vector(1,1));
+    vecz.push_back(Vector(1,2));
+    vecz.emplace_back(1,3);
+
+    std::cout << "valor en 2 es: " << vecz[2].x() << "," << vecz[2].y() << "\n";
+
+    for(Vector& elemento : vecz) {
+        std::cout << "El valor es: " << elemento.x() << " , " << elemento.y() << "\n";
+    
+        elemento = Vector();
+    }
+
+    for(Vector& elemento : vecz) {
+        std::cout << "El valor es: " << elemento.x() << " , " << elemento.y() << "\n";
+    
+    }
+
+
+
+
+//MAP VECTOR
+
+    mVecs["hola"] = Vector(1,2);
+    mVecs.emplace(
+        std::piecewise_construct,
+        std::forward_as_tuple("adios"),
+        std::forward_as_tuple(1,3)
+    );
+    std::cout << "el indice 'hola' es " << mVecs["hola"].to_string() << "\n";
+    
+    std::cout << "el indice 'adios' es " << mVecs["adios"].to_string() << "\n";
+
+
+//UNIQUE PTR
+
+    std::unique_ptr<Vector> uVec = std::make_unique<Vector>(2,3);
+    std::unique_ptr<Vector> oVec;
+    uVec.swap(oVec);
+
+
+
+//SHARED PTR
+
+    std::shared_ptr<Vector> sVec = std::make_shared<Vector>(2,3);
+    transfer(sVec);
+    std::cout << "El shared " << sVec->to_string() << "\n";
+    
+    //std::cout << "El unique es: " << oVec->to_string() << "\n";
+
+    Dummy dummy;
+
+    {
+        std::shared_ptr<Vector> sp = std::make_shared<Vector>(1,2);
+        dummy.sVec = sp;
+    }
+
+    std::cout << "El final \n";
+
 
 
 
